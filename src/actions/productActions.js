@@ -39,7 +39,7 @@ export const listProducts =
   async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST });
-      const { data } = await axios.get(`/api/products?keyword=${keyword}`);
+      const { data } = await axios.get(`${API_URL}/api/products?keyword=${keyword}`);
 
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {
@@ -62,7 +62,7 @@ export const Listproductbyfiters = (filters) => async (dispatch) => {
         queryString += `&${key}=${filters[key]}`;
       }
     }
-    const { data } = await axios.get(`/api/products/${queryString}`);
+    const { data } = await axios.get(`${API_URL}/api/products/${queryString}`);
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     console.log(data);
   } catch (error) {
@@ -80,7 +80,7 @@ export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
-    const { data } = await axios.get(`/api/products/${id}`);
+    const { data } = await axios.get(`${API_URL}/api/products/${id}`);
 
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
@@ -110,7 +110,7 @@ export const DeleteProduct = (id) => async (dispatch, getState) => {
       },
     };
 
-    await axios.delete(`/api/products/${id}`, config);
+    await axios.delete(`${API_URL}/api/products/${id}`, config);
     dispatch({
       type: PRODUCT_DELETE_SUCCESS,
     });
@@ -141,7 +141,7 @@ export const CreateProduct = (formData) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`/api/products/create`, formData, config);
+    const { data } = await axios.post(`${API_URL}/api/products/create`, formData, config);
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
       payload: data,
@@ -175,7 +175,7 @@ export const uploadBulkProducts = (file) => async (dispatch, getState) => {
     const formData = new FormData();
     formData.append("file", file);
 
-    const { data } = await axios.post(`/api/products/upload`, formData, config);
+    const { data } = await axios.post(`${API_URL}/api/products/upload`, formData, config);
 
     dispatch({
       type: PRODUCT_BULK_UPLOAD_SUCCESS,
@@ -213,7 +213,7 @@ export const UpdateProduct =
       };
 
       const { data } = await axios.put(
-        `/api/products/${productId}`,
+        `${API_URL}/api/products/${productId}`,
         formData,
         config
       );
@@ -249,7 +249,7 @@ export const createproductReview =
         },
       };
       const { data } = await axios.post(
-        `/api/products/${productId}/reviews`,
+        `${API_URL}/api/products/${productId}/reviews`,
         { ...review, approved: false },
         config
       );
@@ -282,7 +282,7 @@ export const listPendingReviews = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/products/reviews/pending`, config);
+    const { data } = await axios.get(`${API_URL}/api/products/reviews/pending`, config);
 
     dispatch({ type: REVIEW_LIST_SUCCESS, payload: data });
   } catch (error) {
@@ -313,7 +313,7 @@ export const approveReview =
       };
 
       await axios.put(
-        `/api/products/${productId}/reviews/${reviewId}/approve`,
+        `${API_URL}/api/products/${productId}/reviews/${reviewId}/approve`,
         {},
         config
       );
