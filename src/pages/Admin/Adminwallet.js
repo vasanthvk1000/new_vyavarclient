@@ -50,27 +50,27 @@ const AdminWallet = () => {
   const walletData = [
     {
       title: "In-House Earning 💰",
-      amount: `$${totalEarnings.toFixed(2)}`,
+      amount: `₹${totalEarnings.toFixed(2)}`,
       icon: "📈",
     },
     {
       title: "Commission Earned 📊",
-      amount: `$${commissionEarned.toFixed(2)}`,
+      amount: `₹${commissionEarned.toFixed(2)}`,
       icon: "📉",
     },
     {
       title: "Delivery Charge Earned 🚚",
-      amount: `$${deliveryChargeEarned.toFixed(2)}`,
+      amount: `₹${deliveryChargeEarned.toFixed(2)}`,
       icon: "🚀",
     },
     {
       title: "Total Tax Collected 🏛",
-      amount: `$${totalTaxCollected.toFixed(2)}`,
+      amount: `₹${totalTaxCollected.toFixed(2)}`,
       icon: "📋",
     },
     {
       title: "Pending Amount ⏳",
-      amount: `$${pendingAmount.toFixed(2)}`,
+      amount: `₹${pendingAmount.toFixed(2)}`,
       icon: "🕒",
     },
   ];
